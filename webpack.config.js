@@ -90,7 +90,7 @@ module.exports = {
     ],
     compress: true,
     hot: true,
-    port: 80,
+    port: 3001,
   }
   
 };
