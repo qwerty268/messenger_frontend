@@ -20,7 +20,14 @@ module.exports = {
         }
       }]
       },
-      { test: /\.(scss|css)$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ] },
+      { test: /\.(scss|css)$/, use: [MiniCssExtractPlugin.loader, 'css-loader', {
+        loader: 'sass-loader',
+        options: {
+          sassOptions: {
+            silenceDeprecations: ['import'],
+          },
+        },
+      }] },
       {
         test: /\.(handlebars|hbs)$/,
         loader: 'handlebars-loader',
