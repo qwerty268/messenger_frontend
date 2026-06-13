@@ -4,6 +4,7 @@ export const ChatLabel = {
   channel: "Канал",
 };
 
-//export const serverHost = "http://localhost:8080";
-export const serverHost = "http://localhost:8080/api";
-export const websocketHost = "ws://localhost:8083/api";
+const host = typeof window !== "undefined" ? window.location.hostname : "localhost";
+
+export const serverHost = `http://${host}:8080/api`;
+export const websocketHost = `ws://${host}:8083/api`;
