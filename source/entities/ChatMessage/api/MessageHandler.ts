@@ -11,28 +11,20 @@ export const messageHandler = (messageId : string, messages : TChatMessage[], ch
     }
 
     const handleMessageClick = (event : MouseEvent) => {
-        console.log("[messageHandler] ПКМ по сообщению", messageId);
         event.preventDefault();
         const pickedMessage = messages.find((elem) => {
           return elem.messageId === messageId;
         });
 
         if (message) {
-          const messageText = message.querySelector("#message-text-content")!.innerHTML;
-          console.log("[messageHandler] messageText:", messageText);
+          const messageText = (message.querySelector("#message-text-content")?.textContent ?? "").trim();
           const menu = message.querySelector("#menu-context")!;
-          console.log("[messageHandler] menu элемент:", menu);
           const messageMenu = new MessageMenu(menu);
-          if (messageText) {
-            if (pickedMessage?.chatId === ChatStorage.getCurrentBranchId()) {
-                console.log("[messageHandler] branch=true");
-                messageMenu.render(pickedMessage, messageId, messageText, event.x-100, event.y-25, chatMessageObject, true);
-                return;
-            }
-            console.log("[messageHandler] branch=false");
-            messageMenu.render(pickedMessage!, messageId, messageText, event.x-100, event.y-25, chatMessageObject, false);
-
-           }
+          if (pickedMessage?.chatId === ChatStorage.getCurrentBranchId()) {
+              messageMenu.render(pickedMessage, messageId, messageText, event.x-100, event.y-25, chatMessageObject, true);
+              return;
+          }
+          messageMenu.render(pickedMessage!, messageId, messageText, event.x-100, event.y-25, chatMessageObject, false);
         }
       };
 

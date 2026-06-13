@@ -206,25 +206,19 @@ export class ChatMessage {
 
       const newMessageElement = document.getElementById(message.messageId)!;
       const handleMessageClick = (event : MouseEvent) => {
-        console.log("[renderNewMessage] ПКМ по новому сообщению", message.messageId);
         event.preventDefault();
 
         const messageId = newMessageElement.id;
         const messageInChat = document.getElementById(messageId)!;
         if (message) {
           const menu = messageInChat.querySelector("#menu-context")!;
-          const messageText = messageInChat.querySelector("#message-text-content")?.textContent;
-          console.log("[renderNewMessage] messageText:", messageText);
-          console.log("[renderNewMessage] menu:", menu);
+          const messageText = (messageInChat.querySelector("#message-text-content")?.textContent ?? "").trim();
           const messageMenu = new MessageMenu(menu);
-          if (messageText) {
-            console.log("[renderNewMessage] hihihi");
-            if (ChatStorage.getCurrentBranchId()) {
-              messageMenu.render(message, messageId, messageText, event.x-100, event.y-25, this, true);
-              return;
-            }
-            messageMenu.render(message, messageId, messageText, event.x-100, event.y-25, this, false);
+          if (ChatStorage.getCurrentBranchId()) {
+            messageMenu.render(message, messageId, messageText, event.x-100, event.y-25, this, true);
+            return;
           }
+          messageMenu.render(message, messageId, messageText, event.x-100, event.y-25, this, false);
         }
       };
 
