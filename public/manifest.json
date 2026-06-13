@@ -1,0 +1,16 @@
+{
+    "name": "Messenger",
+    "short_name": "Messenger",
+    "description": "This is Messenger - modern web messenger",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#101723",
+    "theme_color": "#4f82bf",
+    "icons": [
+        {
+            "src": "public/assets/image/Patefon.svg",
+            "sizes": "93x93",
+            "type": "image/svg"
+        }
+    ]
+}
